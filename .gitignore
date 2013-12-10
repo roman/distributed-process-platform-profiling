@@ -1,0 +1,10 @@
+out/*
+vendor/*
+dist
+.cabal-sandbox
+cabal.sandbox.config
+.#*
+#*
+.dependencies
+*.hp
+*.aux
