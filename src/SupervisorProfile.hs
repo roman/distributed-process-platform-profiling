@@ -51,7 +51,7 @@ viaClosure nTimes =
         childStart <- SP.toChildStart ($(Cloud.mkClosure 'closureChild) n)
         let key = show n
             childSpec = toSpec key childStart
-        SP.ChildAdded (SP.ChildRunning _) <- SP.startChild sup childSpec
+        SP.ChildAdded (SP.ChildRunning _) <- SP.startNewChild sup childSpec
         loop sup $ n - 1
       | otherwise = do
         let key = show $ n + 1
@@ -79,7 +79,7 @@ viaSend nTimes = cloudAsync $ do
           | even n = do
             let key = show n
                 childSpec = toSpec key childStart
-            SP.ChildAdded (SP.ChildRunning !cpid) <- SP.startChild sup childSpec
+            SP.ChildAdded (SP.ChildRunning !cpid) <- SP.startNewChild sup childSpec
             liftIO $ threadDelay 100
             Cloud.send cpid n
             loop sup $ n - 1
